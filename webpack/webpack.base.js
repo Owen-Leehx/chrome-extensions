@@ -5,17 +5,19 @@ const webpack = require('webpack')
 module.exports = {
   entry: {
     index: './src/index.tsx',
-    test: {
-      import: './src/test/index.ts',
-      filename: 'pages/[contenthash].js',
+    content: {
+      import: './src/contentScripts/index.ts',
     },
-    option: {
-      import: './src/option/index.ts',
-      filename: 'pages/option.js',
+    background: {
+      import: './src/backgroundScripts/index.ts',
+    },
+    uploadFile: {
+      import: './src/uploadFile/index.ts',
+      filename: 'uploadFile/uploadFile.js',
     },
   },
   output: {
-    filename: '[name].[contenthash].js',
+    filename: 'js/[name].js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
   },
@@ -63,18 +65,21 @@ module.exports = {
       template: './src/index.html',
       inject: true,
     }),
-    new HtmlWebpackPlugin({
-      filename: 'option/index.html',
-      template: './src/index.html',
-      chunks: ['option'],
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'option/index.html',
+    //   template: './src/index.html',
+    //   chunks: ['option'],
+    // }),
     new webpack.DefinePlugin({
       'process.env': {
         REACT_APP_ENV: JSON.stringify(process.env.REACT_APP_ENV),
       },
     }),
     new CopyPlugin({
-      patterns: [{ from: './src/assets', to: 'assets' }],
+      patterns: [
+        { from: './src/assets', to: 'assets' },
+        { from: './src/manifest.json', to: '' },
+      ],
     }),
   ],
 }
