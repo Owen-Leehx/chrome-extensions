@@ -5,13 +5,19 @@
   "description": "上传图片到COS",
   "author": "lihuaxin",
   "background": {
-    "service_worker": "/js/background.js"
+    "service_worker": "background.js"
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "activeTab", "scripting","contextMenus"],
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "/assets/avatar.png",
+      "32": "/assets/avatar.png",
+      "48": "/assets/avatar.png",
+      "128": "/assets/avatar.png"
+    }
   },
-  "default_icon": {
+  "icons": {
     "16": "/assets/avatar.png",
     "32": "/assets/avatar.png",
     "48": "/assets/avatar.png",

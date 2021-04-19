@@ -10,10 +10,11 @@ module.exports = {
     },
     background: {
       import: './src/backgroundScripts/index.ts',
+      filename: '[name].js',
     },
     uploadFile: {
       import: './src/uploadFile/index.ts',
-      filename: 'uploadFile/uploadFile.js',
+      filename: 'uploadFile/[name].js',
     },
   },
   output: {

@@ -1,1 +1,1 @@
-declare const chrome
+// declare const chrome
