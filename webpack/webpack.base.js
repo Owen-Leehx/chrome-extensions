@@ -59,6 +59,15 @@ module.exports = {
         exclude: /node_modules/,
       },
       { enforce: 'pre', test: /\.js$/, use: 'source-map-loader' },
+      {
+        test: /\.less$/i,
+        use: [
+          // compiles Less to CSS
+          "style-loader",
+          "css-loader",
+          "less-loader",
+        ],
+      },
     ],
   },
   plugins: [
