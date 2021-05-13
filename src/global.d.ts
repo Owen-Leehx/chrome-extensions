@@ -1,1 +1,3 @@
-// declare const chrome
+interface Window {
+  PIXI: any
+}

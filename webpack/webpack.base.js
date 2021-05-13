@@ -61,12 +61,11 @@ module.exports = {
       { enforce: 'pre', test: /\.js$/, use: 'source-map-loader' },
       {
         test: /\.less$/i,
-        use: [
-          // compiles Less to CSS
-          "style-loader",
-          "css-loader",
-          "less-loader",
-        ],
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
@@ -74,6 +73,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       inject: true,
+      excludeChunks: ['background'],
     }),
     // new HtmlWebpackPlugin({
     //   filename: 'option/index.html',
