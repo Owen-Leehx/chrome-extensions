@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { TodoList } from './contentScripts'
+import App from './APP'
 import 'antd/dist/antd.min.css'
 
-ReactDOM.render(<TodoList />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))

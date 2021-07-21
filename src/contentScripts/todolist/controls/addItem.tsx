@@ -15,6 +15,7 @@ export const AddItem = () => {
       type: ActionType.ADD,
       content: value,
     })
+    setValue('')
   }
 
   const handleKeyDown = (e: any) => {
@@ -26,6 +27,7 @@ export const AddItem = () => {
     <StyAddItemWrap>
       <Input
         placeholder="请输入待办事项"
+        allowClear
         value={value}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

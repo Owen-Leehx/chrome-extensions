@@ -16,16 +16,16 @@
   "action": {
     "default_popup": "index.html",
     "default_icon": {
-      "16": "/assets/avatar.png",
-      "32": "/assets/avatar.png",
-      "48": "/assets/avatar.png",
-      "128": "/assets/avatar.png"
+      "16": "/assets/todo.png",
+      "32": "/assets/todo.png",
+      "48": "/assets/todo.png",
+      "128": "/assets/todo.png"
     }
   },
   "icons": {
-    "16": "/assets/avatar.png",
-    "32": "/assets/avatar.png",
-    "48": "/assets/avatar.png",
-    "128": "/assets/avatar.png"
+    "16": "/assets/todo.png",
+    "32": "/assets/todo.png",
+    "48": "/assets/todo.png",
+    "128": "/assets/todo.png"
   }
 }
