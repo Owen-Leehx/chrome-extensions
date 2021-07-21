@@ -12,8 +12,8 @@ export const StyTodoListWrap = styled.div`
 `
 
 export const StyTodoList = styled.ol`
-  padding: 0;
-  margin: 0;
+  padding: 0 16px 0 0;
+  margin: 0 -16px 0 0;
   height: calc(100% - 100px);
   overflow-y: auto;
 `
@@ -22,6 +22,7 @@ export const StyTodoListItem = styled.li`
   margin: 12px 0;
   padding: 8px;
   border-bottom: 1px solid #999;
+  transition: height 0.3;
   .item-header {
     display: flex;
     justify-content: space-between;
@@ -40,12 +41,13 @@ export const StyTodoListItem = styled.li`
 `
 export const StyAddItemBtn = styled.button`
   position: relative;
-  margin: 12px 0;
+  margin: 0 12px;
   padding: 4px 12px;
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
-  max-width: 200px;
+  min-width: 80px;
   border-radius: 12px;
   border: none;
   outline: none;
@@ -69,4 +71,10 @@ export const StyAddItemBtn = styled.button`
     z-index: -1;
     border-radius: 12px;
   }
+`
+
+export const StyAddItemWrap = styled.div`
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
 `

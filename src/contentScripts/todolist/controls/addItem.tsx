@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Input } from 'antd'
 import { TodoListContext } from '../index'
 import { ActionType } from '../interface'
-import { StyAddItemBtn } from '../style'
+import { StyAddItemBtn, StyAddItemWrap } from '../style'
 
 export const AddItem = () => {
   const { dispatch } = useContext(TodoListContext)
@@ -23,7 +23,7 @@ export const AddItem = () => {
   }
 
   return (
-    <div>
+    <StyAddItemWrap>
       <Input
         placeholder="请输入待办事项"
         value={value}
@@ -31,6 +31,6 @@ export const AddItem = () => {
         onKeyDown={handleKeyDown}
       />
       <StyAddItemBtn onClick={submit}>添加</StyAddItemBtn>
-    </div>
+    </StyAddItemWrap>
   )
 }

@@ -20,7 +20,7 @@ export const TodoList = () => {
         <AddItem />
         <StyTodoList>
           {todoList.map((item: State) => (
-            <TodoItem key={item.createTime} data={item} />
+            <TodoItem key={item.id} data={item} />
           ))}
         </StyTodoList>
       </StyTodoListWrap>

@@ -6,7 +6,7 @@ export interface Context {
 }
 
 export interface State {
-  id: string
+  id: number
   content?: string
   isDone: boolean
   createTime: string

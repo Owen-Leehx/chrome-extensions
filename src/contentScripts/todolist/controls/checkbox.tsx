@@ -14,5 +14,5 @@ export const CheckboxItem = ({ data }: Props) => {
     dispatch({ type: ActionType.FINISH, id })
   }
 
-  return <Checkbox disabled={isDone} onChange={handleChange} />
+  return <Checkbox disabled={isDone} checked={isDone} onChange={handleChange} />
 }
