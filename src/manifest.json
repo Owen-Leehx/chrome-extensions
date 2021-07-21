@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "uploadFile",
+  "name": "todo List",
   "version": "1.0",
-  "description": "上传图片到COS",
+  "description": "待办事项",
   "author": "lihuaxin",
   "background": {
     "service_worker": "background.js"
