@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const StyTodoListWrap = styled.div`
   padding: 6px;
-  width: 380px;
-  height: 680px;
+  width: 320px;
+  height: 580px;
   font-size: 14px;
   color: #111;
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.24));
@@ -12,9 +12,8 @@ export const StyTodoListBox = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 16px 24px;
+  padding: 4px 12px;
   background-color: #000;
-  border-radius: 12px;
   &:before {
     content: '';
     background: linear-gradient(
@@ -31,14 +30,13 @@ export const StyTodoListBox = styled.div`
     width: calc(100% + 12px);
     height: calc(100% + 12px);
     z-index: -1;
-    border-radius: 12px;
   }
 `
 
 export const StyTodoList = styled.ol`
   position: relative;
-  padding: 0 16px 0 0;
-  margin: 0 -16px 0 0;
+  padding: 0 8px 0 0;
+  margin: 0 -8px 0 0;
   height: calc(100% - 100px);
   overflow-y: auto;
 `
