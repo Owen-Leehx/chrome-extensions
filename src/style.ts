@@ -18,4 +18,8 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #ebe8e8;
     border-radius: 4px;
   }
+  ul,li{
+    list-style: none;
+
+  }
 `

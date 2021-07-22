@@ -1,17 +1,42 @@
 import styled from 'styled-components'
 
 export const StyTodoListWrap = styled.div`
-  padding: 16px 24px;
-  width: 360px;
-  height: 600px;
-  border-radius: 8px;
-  background-color: #fff;
+  padding: 6px;
+  width: 380px;
+  height: 680px;
   font-size: 14px;
   color: #111;
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.24));
 `
+export const StyTodoListBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 16px 24px;
+  background-color: #000;
+  border-radius: 12px;
+  &:before {
+    content: '';
+    background: linear-gradient(
+      130deg,
+      #ff7a18,
+      #af002d 41.07%,
+      #319197 76.05%
+    );
+    position: absolute;
+    top: -6px;
+    bottom: -6px;
+    left: -6px;
+    right: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    z-index: -1;
+    border-radius: 12px;
+  }
+`
 
 export const StyTodoList = styled.ol`
+  position: relative;
   padding: 0 16px 0 0;
   margin: 0 -16px 0 0;
   height: calc(100% - 100px);
@@ -21,8 +46,7 @@ export const StyTodoList = styled.ol`
 export const StyTodoListItem = styled.li`
   margin: 12px 0;
   padding: 8px;
-  border-bottom: 1px solid #999;
-  transition: height 0.3;
+  background-color: #eaeaea;
   .item-header {
     display: flex;
     justify-content: space-between;
@@ -31,9 +55,14 @@ export const StyTodoListItem = styled.li`
     font-size: 12px;
     color: #999;
   }
-  .content {
-    padding: 8px;
+  .item-content {
+    display: flex;
+    padding: 8px 0;
+    .content {
+      padding: 0 8px;
+    }
   }
+
   .item-footer {
     display: flex;
     justify-content: flex-end;
@@ -53,24 +82,6 @@ export const StyAddItemBtn = styled.button`
   outline: none;
   background-color: #000;
   color: #fff;
-  &:before {
-    content: '';
-    background: linear-gradient(
-      130deg,
-      #ff7a18,
-      #af002d 41.07%,
-      #319197 76.05%
-    );
-    position: absolute;
-    top: -5px;
-    bottom: -5px;
-    left: -5px;
-    right: -5px;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-    z-index: -1;
-    border-radius: 12px;
-  }
 `
 
 export const StyAddItemWrap = styled.div`

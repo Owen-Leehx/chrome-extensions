@@ -1,28 +1,27 @@
 import React, { useReducer, useEffect } from 'react'
 import reducer from './reducer'
-import { Context, State } from './interface'
-import { TodoItem } from './components'
+import { Context, ActionType } from './interface'
+import { TodoList } from './components'
 import { AddItem } from './controls'
-import { StyTodoListWrap, StyTodoList } from './style'
+import { StyTodoListWrap, StyTodoListBox } from './style'
 import { saveTodoList, getTodoList } from './store'
 
 export const TodoListContext = React.createContext<Context>({} as Context)
 
-export const TodoList = () => {
+export const TodoListSystem = () => {
   const initTodoList = getTodoList()
   const [todoList, dispatch] = useReducer(reducer, initTodoList)
   useEffect(() => {
     saveTodoList(todoList)
   }, [todoList])
+
   return (
     <TodoListContext.Provider value={{ todoList, dispatch }}>
       <StyTodoListWrap>
-        <AddItem />
-        <StyTodoList>
-          {todoList.map((item: State) => (
-            <TodoItem key={item.id} data={item} />
-          ))}
-        </StyTodoList>
+        <StyTodoListBox>
+          <AddItem />
+          <TodoList list={todoList} />
+        </StyTodoListBox>
       </StyTodoListWrap>
     </TodoListContext.Provider>
   )

@@ -26,6 +26,17 @@ const reducer = (state: State[], action: ActionData): State[] => {
             }
           : item
       })
+    case ActionType.SORT: {
+      const { sortInfo } = action
+      const { from = 0, to = 0 } = sortInfo || {}
+      const startIndex = from < 0 ? state.length + from : from
+      if (startIndex >= 0 && startIndex < state.length) {
+        const endIndex = to < 0 ? state.length + to : to
+        const [item] = state.splice(from, 1)
+        state.splice(endIndex, 0, item)
+      }
+      return [...state]
+    }
 
     default:
       return state
