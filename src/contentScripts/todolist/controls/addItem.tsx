@@ -38,12 +38,7 @@ export const AddItem = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <DatePicker
-        placeholder="选择开始时间"
-        showTime
-        onChange={onChange}
-        onOk={onOk}
-      />
+      <DatePicker placeholder="选择日期" onChange={onChange} onOk={onOk} />
       <StyAddItemBtn onClick={submit}>添加</StyAddItemBtn>
     </StyAddItemWrap>
   )

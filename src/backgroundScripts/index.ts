@@ -19,12 +19,11 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.storage.onChanged.addListener(function (changes, namespace) {
   for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
     if (key !== TODO_LIST_DATA) continue
-
-    const list = newValue?.filter(
-      (newItem: State) =>
-        !oldValue?.some((oldItem: State) => oldItem.id === newItem.id)
-    )
-    list.forEach((item: State) => {
+    
+    oldValue?.forEach((item:State)=>{
+      chrome.notifications.clear( `todoId_${item.id}`)
+    })
+    newValue?.forEach((item: State) => {
       const { id, content } = item
       chrome.notifications.create(
         `todoId_${id}`,
