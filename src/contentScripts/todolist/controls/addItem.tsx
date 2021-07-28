@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Input } from 'antd'
+import { Input, DatePicker } from 'antd'
 import { TodoListContext } from '../index'
 import { ActionType } from '../interface'
 import { StyAddItemBtn, StyAddItemWrap } from '../style'
@@ -22,6 +22,12 @@ export const AddItem = () => {
     if (e.keyCode !== 13) return
     submit()
   }
+  const onChange = (e: any) => {
+    console.log('🚀 ~ file: addItem.tsx ~ line 28 ~ handleChange ~ e', e)
+  }
+  const onOk = (value: any) => {
+    console.log('🚀 ~ file: addItem.tsx ~ line 28 ~ handleChange ~ e', value)
+  }
 
   return (
     <StyAddItemWrap>
@@ -31,6 +37,12 @@ export const AddItem = () => {
         value={value}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+      />
+      <DatePicker
+        placeholder="选择开始时间"
+        showTime
+        onChange={onChange}
+        onOk={onOk}
       />
       <StyAddItemBtn onClick={submit}>添加</StyAddItemBtn>
     </StyAddItemWrap>

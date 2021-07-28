@@ -9,8 +9,12 @@ import { saveTodoList, getTodoList } from './store'
 export const TodoListContext = React.createContext<Context>({} as Context)
 
 export const TodoListSystem = () => {
-  const initTodoList = getTodoList()
-  const [todoList, dispatch] = useReducer(reducer, initTodoList)
+  const [todoList, dispatch] = useReducer(reducer, [])
+  useEffect(() => {
+    getTodoList().then((res) => {
+      dispatch({ type: ActionType.INITIAL, initialData: res })
+    })
+  }, [])
   useEffect(() => {
     saveTodoList(todoList)
   }, [todoList])

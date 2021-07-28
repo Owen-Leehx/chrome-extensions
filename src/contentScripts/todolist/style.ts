@@ -85,5 +85,5 @@ export const StyAddItemBtn = styled.button`
 export const StyAddItemWrap = styled.div`
   padding: 24px 0;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 `

@@ -11,7 +11,8 @@
     "storage",
     "activeTab",
     "scripting",
-    "contextMenus"
+    "contextMenus",
+    "notifications"
   ],
   "action": {
     "default_popup": "index.html",

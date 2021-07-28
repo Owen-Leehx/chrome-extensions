@@ -1,10 +1,19 @@
 import { State } from '../interface'
 
-const TODO_LIST_DATA = 'todoListData'
+export const TODO_LIST_DATA = 'todoListData'
+
+const getStorageSyncData = (key: string) =>
+  new Promise<State[]>((resolve) => {
+    chrome.storage.sync.get(key, (result) => {
+      console.log('Value currently is ', result[key])
+      resolve(result[key])
+    })
+  })
 
 export const saveTodoList = (list: State[]) => {
-  localStorage.setItem(TODO_LIST_DATA, JSON.stringify(list))
+  chrome.storage.sync.set({ [TODO_LIST_DATA]: list }, () => {
+    console.log('Value is set to ', list)
+  })
 }
 
-export const getTodoList = (): State[] =>
-  JSON.parse(localStorage.getItem(TODO_LIST_DATA) || '[]')
+export const getTodoList = () => getStorageSyncData(TODO_LIST_DATA)

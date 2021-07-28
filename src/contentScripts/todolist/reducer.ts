@@ -2,6 +2,8 @@ import { State, ActionData, ActionType } from './interface'
 
 const reducer = (state: State[], action: ActionData): State[] => {
   switch (action.type) {
+    case ActionType.INITIAL:
+      return action.initialData ? [...action.initialData] : []
     case ActionType.ADD:
       return [
         ...state,

@@ -14,14 +14,17 @@ export interface State {
   createTime: string
   updateTime?: string
   sortInfo?: SortInfo
+  eventTime?: number
 }
 
 export interface ActionData extends Partial<State> {
   type: ActionType
+  initialData?: State[]
 }
 export enum ActionType {
   ADD = 'addItem',
   DEL = 'deleteItem',
   FINISH = 'finishItem',
   SORT = 'sortItem',
+  INITIAL = 'initial',
 }
