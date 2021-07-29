@@ -1,5 +1,6 @@
 import { TODO_LIST_DATA } from 'config/constant'
 import { State } from 'contentScripts/todolist/interface'
+import { getTodoList } from 'contentScripts/todolist/store'
 const color = '#3aa757'
 const TODO_LIST_ID = (id: number) => `todoId_${id}`
 
@@ -14,35 +15,31 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
     oldValue
       ?.filter((item: State) => item.eventTime)
       .forEach((item: State) => {
-        chrome.notifications.clear(TODO_LIST_ID(item.id))
+        chrome.alarms.clear(TODO_LIST_ID(item.id))
       })
 
     newValue
       ?.filter((item: State) => item.eventTime && item.eventTime > Date.now())
       .forEach((item: State) => {
-        const { id, content, eventTime } = item
-        chrome.notifications.create(
-          TODO_LIST_ID(id),
-          {
-            type: 'basic',
-            title: `你有一个待办事项开始啦`,
-            message: content,
-            iconUrl: '/assets/todo.png',
-            eventTime,
-            priority: 2,
-          },
-          () => {
-            console.log(item)
-          }
-        )
+        const { id, eventTime } = item
+        chrome.alarms.create(TODO_LIST_ID(id), {
+          when: eventTime,
+        })
       })
-
-    console.log(
-      `Storage key "${key}" in namespace "${namespace}" changed.`,
-      `Old value was=`,
-      oldValue,
-      `new value is=`,
-      newValue
-    )
   }
+})
+
+chrome.alarms.onAlarm.addListener(async (alarm) => {
+  const list = await getTodoList()
+  list?.forEach((item) => {
+    const { id, content } = item
+    if (TODO_LIST_ID(id) !== alarm.name) return
+    chrome.notifications.create(TODO_LIST_ID(id), {
+      type: 'basic',
+      title: `你有一个待办事项开始啦`,
+      message: content,
+      iconUrl: '/assets/todo.png',
+      priority: 2,
+    })
+  })
 })

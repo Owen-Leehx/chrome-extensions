@@ -8,6 +8,7 @@
     "service_worker": "background.js"
   },
   "permissions": [
+    "alarms",
     "storage",
     "activeTab",
     "scripting",
