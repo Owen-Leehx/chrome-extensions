@@ -1,45 +1,41 @@
-import { TODO_LIST_DATA } from '../contentScripts/todolist/store'
-import { State } from '../contentScripts/todolist/interface'
-let color = '#3aa757'
-enum MenusId {
-  TEST_UPLOAD = 'test-upload',
-}
-const TODO_LIST_ID = 'todoListId'
+import { TODO_LIST_DATA } from 'config/constant'
+import { State } from 'contentScripts/todolist/interface'
+const color = '#3aa757'
+const TODO_LIST_ID = (id: number) => `todoId_${id}`
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.set({ color })
-  // window.addEventListener('storage', () => {
-
-  //   const data = getTodoList()
-  //   console.log(data)
-
-  // })
 })
 
 chrome.storage.onChanged.addListener(function (changes, namespace) {
-  for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
+  for (const [key, { oldValue, newValue }] of Object.entries(changes)) {
     if (key !== TODO_LIST_DATA) continue
-    
-    oldValue?.forEach((item:State)=>{
-      chrome.notifications.clear( `todoId_${item.id}`)
-    })
-    newValue?.forEach((item: State) => {
-      const { id, content } = item
-      chrome.notifications.create(
-        `todoId_${id}`,
-        {
-          type: 'basic',
-          title: 'todo',
-          message: content,
-          iconUrl: '/assets/todo.png',
-          eventTime: Date.now() + 3000,
-          priority: 2,
-        },
-        () => {
-          console.log(item)
-        }
-      )
-    })
+
+    oldValue
+      ?.filter((item: State) => item.eventTime)
+      .forEach((item: State) => {
+        chrome.notifications.clear(TODO_LIST_ID(item.id))
+      })
+
+    newValue
+      ?.filter((item: State) => item.eventTime && item.eventTime > Date.now())
+      .forEach((item: State) => {
+        const { id, content, eventTime } = item
+        chrome.notifications.create(
+          TODO_LIST_ID(id),
+          {
+            type: 'basic',
+            title: `你有一个待办事项开始啦`,
+            message: content,
+            iconUrl: '/assets/todo.png',
+            eventTime,
+            priority: 2,
+          },
+          () => {
+            console.log(item)
+          }
+        )
+      })
 
     console.log(
       `Storage key "${key}" in namespace "${namespace}" changed.`,

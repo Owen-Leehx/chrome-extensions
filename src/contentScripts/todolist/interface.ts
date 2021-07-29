@@ -11,8 +11,8 @@ export interface State {
   id: number
   content?: string
   isDone: boolean
-  createTime: string
-  updateTime?: string
+  createTime: number
+  updateTime?: number
   sortInfo?: SortInfo
   eventTime?: number
 }

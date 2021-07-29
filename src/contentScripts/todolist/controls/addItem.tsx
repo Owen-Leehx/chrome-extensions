@@ -1,45 +1,56 @@
 import React, { useState, useContext } from 'react'
-import { Input, DatePicker } from 'antd'
+import { Input, Button, Space } from 'antd'
 import { TodoListContext } from '../index'
 import { ActionType } from '../interface'
-import { StyAddItemBtn, StyAddItemWrap } from '../style'
+import { StyAddItemWrap } from '../style'
+import moment from 'moment'
+import { format } from 'config/constant'
 
 export const AddItem = () => {
   const { dispatch } = useContext(TodoListContext)
   const [value, setValue] = useState<string>('')
-  const handleChange = (e: any) => {
-    setValue(e.target.value)
-  }
+  const [date, setDate] = useState<string>('')
+
   const submit = () => {
     dispatch({
       type: ActionType.ADD,
       content: value,
+      eventTime: date ? moment(date).valueOf() : 0,
     })
-    setValue('')
   }
 
   const handleKeyDown = (e: any) => {
     if (e.keyCode !== 13) return
     submit()
   }
-  const onChange = (e: any) => {
-    console.log('🚀 ~ file: addItem.tsx ~ line 28 ~ handleChange ~ e', e)
+
+  const handleChange = (e: any) => {
+    setValue(e.target.value)
   }
-  const onOk = (value: any) => {
-    console.log('🚀 ~ file: addItem.tsx ~ line 28 ~ handleChange ~ e', value)
+
+  const onChange = (e: any) => {
+    setDate(e.target.value)
   }
 
   return (
     <StyAddItemWrap>
-      <Input
-        placeholder="请输入待办事项"
-        allowClear
-        value={value}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-      />
-      <DatePicker placeholder="选择日期" onChange={onChange} onOk={onOk} />
-      <StyAddItemBtn onClick={submit}>添加</StyAddItemBtn>
+      <Space style={{ flex: 1 }} direction="vertical">
+        <Input
+          placeholder="待办事项"
+          allowClear
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+        <Input
+          placeholder={`活动${format}`}
+          allowClear
+          onChange={onChange}
+          onKeyDown={handleKeyDown}
+        />
+      </Space>
+      <Button type="link" onClick={submit}>
+        添加
+      </Button>
     </StyAddItemWrap>
   )
 }

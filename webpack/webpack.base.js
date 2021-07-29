@@ -2,6 +2,14 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
+const fs = require('fs')
+
+const ROOT_PATH = path.resolve(__dirname, '../src')
+const packagesAliasMap = fs.readdirSync(ROOT_PATH).filter((fileName)=>!fileName.includes('.')).reduce((acc, fileName) => {
+  acc[fileName] = path.join(ROOT_PATH, fileName)
+  return acc
+}, {})
+
 module.exports = {
   entry: {
     index: './src/index.tsx',
@@ -11,7 +19,7 @@ module.exports = {
     background: {
       import: './src/backgroundScripts/index.ts',
       filename: '[name].js',
-    }
+    },
   },
   output: {
     filename: 'js/[name].js',
@@ -45,7 +53,8 @@ module.exports = {
     },
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    alias: { ...packagesAliasMap },
   },
   module: {
     rules: [
@@ -57,7 +66,23 @@ module.exports = {
       { enforce: 'pre', test: /\.js$/, use: 'source-map-loader' },
       {
         test: /\.less$/i,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                modifyVars: {
+                  'primary-color': '#ff7a18',
+                  'link-color': '#ff7a18',
+                  'border-radius-base': '2px',
+                },
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.css$/i,

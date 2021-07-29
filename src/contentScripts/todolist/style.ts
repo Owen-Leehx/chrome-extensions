@@ -37,7 +37,7 @@ export const StyTodoList = styled.ol`
   position: relative;
   padding: 0 8px 0 0;
   margin: 0 -8px 0 0;
-  height: calc(100% - 100px);
+  height: calc(100% - 110px);
   overflow-y: auto;
 `
 
@@ -45,6 +45,8 @@ export const StyTodoListItem = styled.li`
   margin: 12px 0;
   padding: 8px;
   background-color: #eaeaea;
+  box-shadow: 0px 4px 8px 0px rgba(85, 102, 117, 0.14);
+  border-radius: 2px;
   .item-header {
     display: flex;
     justify-content: space-between;
@@ -80,10 +82,12 @@ export const StyAddItemBtn = styled.button`
   outline: none;
   background-color: #000;
   color: #fff;
+  cursor: pointer;
 `
 
 export const StyAddItemWrap = styled.div`
-  padding: 24px 0;
+  padding: 12px 0;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `

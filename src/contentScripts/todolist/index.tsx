@@ -11,8 +11,8 @@ export const TodoListContext = React.createContext<Context>({} as Context)
 export const TodoListSystem = () => {
   const [todoList, dispatch] = useReducer(reducer, [])
   useEffect(() => {
-    getTodoList().then((res) => {
-      dispatch({ type: ActionType.INITIAL, initialData: res })
+    getTodoList().then((initialData) => {
+      dispatch({ type: ActionType.INITIAL, initialData })
     })
   }, [])
   useEffect(() => {

@@ -9,8 +9,9 @@ const reducer = (state: State[], action: ActionData): State[] => {
         ...state,
         {
           id: new Date().valueOf(),
-          createTime: new Date().toString(),
+          createTime: new Date().valueOf(),
           content: action.content,
+          eventTime: action.eventTime,
           isDone: false,
         },
       ]
@@ -24,7 +25,7 @@ const reducer = (state: State[], action: ActionData): State[] => {
           ? {
               ...item,
               isDone: true,
-              updateTime: new Date().toString(),
+              updateTime: new Date().valueOf(),
             }
           : item
       })

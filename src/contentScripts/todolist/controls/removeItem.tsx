@@ -15,7 +15,7 @@ export const RemoveItem = ({ data }: Props) => {
   }
 
   return (
-    <Button type="link" onClick={handleRemove}>
+    <Button size="small" type="link" onClick={handleRemove}>
       删除
     </Button>
   )
