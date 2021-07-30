@@ -1,10 +1,15 @@
 import styled from 'styled-components'
+import { isWindow } from 'config/constant'
+const containerWidth = isWindow ? '100%' : '320px'
+const containerHeight = isWindow ? '100vh' : '580px'
 
 export const StyTodoListWrap = styled.div`
   position: relative;
+  margin: 0 auto;
   padding: 6px;
-  width: 320px;
-  height: 580px;
+  max-width: 500px;
+  width: ${containerWidth};
+  height: ${containerHeight};
   font-size: 14px;
   color: #111;
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.24));
@@ -18,12 +23,7 @@ export const StyTodoListBox = styled.div`
   background-color: #000;
   &:before {
     content: '';
-    background: linear-gradient(
-      130deg,
-      #ff7a18,
-      #af002d 41.07%,
-      #319197 76.05%
-    );
+    background: linear-gradient(130deg, #ff7a18, #af002d 41.07%, #319197 76.05%);
     position: absolute;
     top: -6px;
     bottom: -6px;
@@ -104,12 +104,7 @@ export const StyTabsWrap = styled.div`
         height: 1px;
         width: 100%;
         border: none;
-        background: linear-gradient(
-          130deg,
-          #ff7a18,
-          #af002d 41.07%,
-          #319197 76.05%
-        );
+        background: linear-gradient(130deg, #ff7a18, #af002d 41.07%, #319197 76.05%);
       }
     }
   }

@@ -23,6 +23,9 @@ export const GlobalStyle = createGlobalStyle`
     );
     border-radius: 4px;
   }
+  html,body{
+    height: 100%;
+  }
   ul,li{
     list-style: none;
   }

@@ -1,9 +1,9 @@
+import { isWindow, TODO_LIST_DATA } from 'config/constant'
 import { State } from '../interface'
-import { TODO_LIST_DATA } from 'config/constant'
 
 export const chromeGetStorageSyncData = (key: string) =>
-  new Promise<State[]>((resolve) => {
-    chrome.storage.sync.get(key, (result) => {
+  new Promise<State[]>(resolve => {
+    chrome.storage.sync.get(key, result => {
       console.log('Value currently is ', result[key])
       resolve(result[key])
     })
@@ -16,7 +16,7 @@ export const chromeSaveTodoList = (list: State[]) => {
 }
 
 export const localGetTodoList = () =>
-  new Promise<State[]>((resolve) => {
+  new Promise<State[]>(resolve => {
     const list = JSON.parse(localStorage.getItem(TODO_LIST_DATA) || '[]') as any
     resolve(list)
   })
@@ -26,12 +26,7 @@ export const localSaveTodoList = (list: State[]) => {
 }
 
 export const saveTodoList = (list: State[]) => {
-  process.env.NODE_ENV === 'development'
-    ? localSaveTodoList(list)
-    : chromeSaveTodoList(list)
+  isWindow ? localSaveTodoList(list) : chromeSaveTodoList(list)
 }
 
-export const getTodoList = () =>
-  process.env.NODE_ENV === 'development'
-    ? localGetTodoList()
-    : chromeGetStorageSyncData(TODO_LIST_DATA)
+export const getTodoList = () => (isWindow ? localGetTodoList() : chromeGetStorageSyncData(TODO_LIST_DATA))
