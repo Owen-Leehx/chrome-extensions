@@ -77,6 +77,7 @@ module.exports = {
                   'primary-color': '#ff7a18',
                   'link-color': '#ff7a18',
                   'border-radius-base': '2px',
+                  'component-background':'#eaeaea'
                 },
                 javascriptEnabled: true,
               },

@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 
 export const StyTodoListWrap = styled.div`
+  position: relative;
   padding: 6px;
   width: 320px;
   height: 580px;
   font-size: 14px;
   color: #111;
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.24));
+  overflow: hidden;
 `
 export const StyTodoListBox = styled.div`
   position: relative;
@@ -90,4 +92,25 @@ export const StyAddItemWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`
+export const StyTabsWrap = styled.div`
+  .ant-tabs-card.ant-tabs-small {
+    .ant-tabs-nav {
+      .ant-tabs-tab {
+        padding: 0 12px;
+      }
+      &::before {
+        bottom: -1px;
+        height: 1px;
+        width: 100%;
+        border: none;
+        background: linear-gradient(
+          130deg,
+          #ff7a18,
+          #af002d 41.07%,
+          #319197 76.05%
+        );
+      }
+    }
+  }
 `

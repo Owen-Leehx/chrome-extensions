@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Tabs } from 'antd'
 import { TabKey, State } from 'contentScripts/todolist/interface'
+import { StyTabsWrap } from '../style'
 
 interface Props {
   value: State[]
@@ -27,12 +28,12 @@ export const FilterItem = ({ value, onChange }: Props) => {
     setActive(active)
   }
   return (
-    <div>
+    <StyTabsWrap>
       <Tabs type="card" size="small" activeKey={active} onChange={handleChange}>
         <TabPane tab="全部" key={TabKey.ALL} />
         <TabPane tab="进行中" key={TabKey.ACTIVE} />
         <TabPane tab="已完成" key={TabKey.DONE} />
       </Tabs>
-    </div>
+    </StyTabsWrap>
   )
 }

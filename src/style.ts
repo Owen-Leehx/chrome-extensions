@@ -15,7 +15,12 @@ export const GlobalStyle = createGlobalStyle`
 
   /*定义滑块*/
   ::-webkit-scrollbar-thumb {
-    background-color: #ebe8e8;
+    background: linear-gradient(
+      130deg,
+      #ff7a18,
+      #af002d 41.07%,
+      #319197 76.05%
+    );
     border-radius: 4px;
   }
   ul,li{
