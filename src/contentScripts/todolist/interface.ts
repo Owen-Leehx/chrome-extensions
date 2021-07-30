@@ -20,6 +20,7 @@ export interface State {
 export interface ActionData extends Partial<State> {
   type: ActionType
   initialData?: State[]
+  filterType?: TabKey
 }
 export enum ActionType {
   ADD = 'addItem',
@@ -27,4 +28,11 @@ export enum ActionType {
   FINISH = 'finishItem',
   SORT = 'sortItem',
   INITIAL = 'initial',
+  FILTER = 'filter',
+}
+
+export enum TabKey {
+  ALL = 'all',
+  ACTIVE = 'active',
+  DONE = 'done',
 }

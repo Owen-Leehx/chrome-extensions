@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { State } from '../interface'
 import { StyTodoList } from '../style'
 import { TodoItem } from './todoItem'
@@ -19,13 +19,19 @@ import {
 
 import { TodoListContext } from '../index'
 import { ActionType } from '../interface'
+import { FilterItem } from '../controls'
 
 interface Props {
   list: State[]
 }
+interface SortIndex {
+  oldIndex: number
+  newIndex: number
+}
 
 export const TodoList = ({ list }: Props) => {
   const { dispatch } = useContext(TodoListContext)
+  const [filterList, setFilter] = useState<State[]>([])
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -33,13 +39,7 @@ export const TodoList = ({ list }: Props) => {
     })
   )
   const sortList = list.map((item) => item.id + '')
-  const onSortEnd = ({
-    oldIndex,
-    newIndex,
-  }: {
-    oldIndex: number
-    newIndex: number
-  }) => {
+  const onSortEnd = ({ oldIndex, newIndex }: SortIndex) => {
     dispatch({
       type: ActionType.SORT,
       sortInfo: { from: oldIndex, to: newIndex },
@@ -53,18 +53,24 @@ export const TodoList = ({ list }: Props) => {
     onSortEnd({ oldIndex, newIndex })
   }
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCenter}
-      onDragEnd={handleDragEnd}
-    >
-      <SortableContext items={sortList} strategy={verticalListSortingStrategy}>
-        <StyTodoList>
-          {list.map((item: State) => (
-            <TodoItem key={item.id} data={item} />
-          ))}
-        </StyTodoList>
-      </SortableContext>
-    </DndContext>
+    <>
+      <FilterItem value={list} onChange={setFilter} />
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={sortList}
+          strategy={verticalListSortingStrategy}
+        >
+          <StyTodoList>
+            {filterList.map((item: State) => (
+              <TodoItem key={item.id} data={item} />
+            ))}
+          </StyTodoList>
+        </SortableContext>
+      </DndContext>
+    </>
   )
 }

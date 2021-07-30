@@ -37,12 +37,12 @@ export const StyTodoList = styled.ol`
   position: relative;
   padding: 0 8px 0 0;
   margin: 0 -8px 0 0;
-  height: calc(100% - 110px);
+  height: calc(100% - 150px);
   overflow-y: auto;
 `
 
 export const StyTodoListItem = styled.li`
-  margin: 12px 0;
+  margin-bottom: 12px;
   padding: 8px;
   background-color: #eaeaea;
   box-shadow: 0px 4px 8px 0px rgba(85, 102, 117, 0.14);

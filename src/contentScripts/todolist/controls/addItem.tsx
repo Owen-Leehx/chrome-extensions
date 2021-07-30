@@ -7,9 +7,10 @@ import moment from 'moment'
 import { format } from 'config/constant'
 
 export const AddItem = () => {
+  const defaultDateValue = moment(Date.now()).format(format)
   const { dispatch } = useContext(TodoListContext)
   const [value, setValue] = useState<string>('')
-  const [date, setDate] = useState<string>('')
+  const [date, setDate] = useState<string>(defaultDateValue)
 
   const submit = () => {
     dispatch({
@@ -43,6 +44,7 @@ export const AddItem = () => {
         />
         <Input
           placeholder={`活动${format}`}
+          defaultValue={defaultDateValue}
           allowClear
           onChange={onChange}
           onKeyDown={handleKeyDown}
