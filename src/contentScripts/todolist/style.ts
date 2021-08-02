@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { isWindow } from 'config/constant'
-const containerWidth = isWindow ? '100%' : '320px'
-const containerHeight = isWindow ? '100vh' : '580px'
+const containerWidth = isWindow ? '100%' : '375px'
+const containerHeight = isWindow ? '100vh' : '600px'
 
 export const StyTodoListWrap = styled.div`
   position: relative;

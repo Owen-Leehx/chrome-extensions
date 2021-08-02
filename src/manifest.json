@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "todo List",
   "version": "1.0",
-  "description": "待办事项",
+  "description": "待办事项,日程安排",
   "author": "lihuaxin",
   "background": {
     "service_worker": "background.js"
@@ -10,9 +10,7 @@
   "permissions": [
     "alarms",
     "storage",
-    "activeTab",
     "scripting",
-    "contextMenus",
     "notifications"
   ],
   "action": {
