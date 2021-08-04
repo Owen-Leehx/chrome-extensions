@@ -62,6 +62,8 @@ export const StyTodoListItem = styled.li`
     padding: 8px 0;
     .content {
       padding: 0 8px;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
   }
 

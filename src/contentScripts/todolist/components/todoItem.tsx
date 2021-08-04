@@ -6,6 +6,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import moment from 'moment'
 import { format } from 'config/constant'
+import { url2href } from 'contentScripts/utils'
 
 interface Props {
   data: State
@@ -13,12 +14,11 @@ interface Props {
 
 export const TodoItem = ({ data }: Props) => {
   const { id, content, createTime, eventTime } = data
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: String(id) })
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: String(id) })
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition,
+    transition
   } as CSSProperties
 
   const _createTime = moment(createTime).format(format)
@@ -34,8 +34,8 @@ export const TodoItem = ({ data }: Props) => {
         </div>
         <div className="item-content">
           <CheckboxItem data={data} />
-          <div>
-            <p className="content">{content}</p>
+          <div className="content">
+            <div dangerouslySetInnerHTML={{ __html: url2href(content || '') }}></div>
           </div>
         </div>
         <div className="item-footer">
