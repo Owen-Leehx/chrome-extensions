@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "todo List",
-  "version": "1.0",
+  "version": "1.1",
   "description": "待办事项,日程安排",
   "author": "lihuaxin",
   "background": {
